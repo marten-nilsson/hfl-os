@@ -9,6 +9,32 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- Password Gate -->
+  <div class="gate-overlay" id="gateOverlay">
+    <div class="gate-card">
+      <div class="gate-logo">
+        <div class="logo-icon">HF</div>
+        <div class="logo-text">
+          <span class="logo-title">HappyFlow</span>
+          <span class="logo-sub">OS</span>
+        </div>
+      </div>
+      <h2 class="gate-title">Välkommen</h2>
+      <p class="gate-desc">Ange lösenord för att fortsätta</p>
+      <form class="gate-form" id="gateForm">
+        <div class="gate-input-wrap">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="gatePassword" placeholder="Lösenord" autocomplete="current-password">
+        </div>
+        <div class="gate-error" id="gateError">Fel lösenord. Försök igen.</div>
+        <button type="submit" class="btn btn-primary btn-full gate-btn">
+          <i class="fas fa-arrow-right"></i> Logga in
+        </button>
+      </form>
+    </div>
+  </div>
+
   <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">

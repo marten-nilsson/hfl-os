@@ -2,6 +2,36 @@
    HappyFlow OS — App Logic
    ============================================ */
 
+/* ============================================
+   PASSWORD GATE
+   ============================================ */
+(function () {
+  const PASS = 'kaspar';
+  const overlay = document.getElementById('gateOverlay');
+  const form = document.getElementById('gateForm');
+  const input = document.getElementById('gatePassword');
+  const error = document.getElementById('gateError');
+
+  if (sessionStorage.getItem('hfl_auth') === '1') {
+    overlay.classList.add('hidden');
+    return;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (input.value === PASS) {
+      sessionStorage.setItem('hfl_auth', '1');
+      overlay.classList.add('hidden');
+      input.value = '';
+      error.classList.remove('visible');
+    } else {
+      error.classList.add('visible');
+      input.value = '';
+      input.focus();
+    }
+  });
+})();
+
 let currentLang = 'sv';
 
 // Navigation

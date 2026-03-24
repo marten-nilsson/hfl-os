@@ -45,6 +45,114 @@
   box-sizing: border-box;
 }
 
+/* ============================================
+   PASSWORD GATE
+   ============================================ */
+.gate-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--gray-900);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.gate-overlay.hidden {
+  display: none;
+}
+
+.gate-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 40px 44px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.gate-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.gate-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+.gate-desc {
+  font-size: 14px;
+  color: var(--gray-500);
+  margin-bottom: 10px;
+}
+
+.gate-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.gate-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  transition: border-color 0.15s ease;
+}
+
+.gate-input-wrap:focus-within {
+  border-color: var(--burgundy);
+  box-shadow: 0 0 0 3px rgba(128, 0, 32, 0.1);
+}
+
+.gate-input-wrap i {
+  color: var(--gray-400);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.gate-input-wrap input {
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--gray-800);
+  width: 100%;
+  letter-spacing: 0.1em;
+}
+
+.gate-input-wrap input::placeholder {
+  letter-spacing: 0;
+  color: var(--gray-400);
+}
+
+.gate-error {
+  font-size: 13px;
+  color: var(--red);
+  display: none;
+  text-align: center;
+}
+
+.gate-error.visible {
+  display: block;
+}
+
+.gate-btn {
+  margin-top: 4px;
+}
+
 body {
   font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--bg);
