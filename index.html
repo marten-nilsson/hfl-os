@@ -1,0 +1,2147 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HappyFlow OS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <div class="logo-icon">HF</div>
+        <div class="logo-text">
+          <span class="logo-title">HappyFlow</span>
+          <span class="logo-sub">OS</span>
+        </div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" data-view="dashboard">
+        <i class="fas fa-th-large"></i>
+        <span data-i18n="nav.dashboard">Dashboard</span>
+      </a>
+      <a href="#" class="nav-item" data-view="automat">
+        <i class="fas fa-robot"></i>
+        <span data-i18n="nav.automat">Automat</span>
+        <span class="nav-badge">3</span>
+      </a>
+      <a href="#" class="nav-item" data-view="invoice">
+        <i class="fas fa-file-invoice-dollar"></i>
+        <span data-i18n="nav.invoice">Invoice Audit</span>
+      </a>
+      <a href="#" class="nav-item" data-view="costs">
+        <i class="fas fa-chart-pie"></i>
+        <span data-i18n="nav.costs">Cost Dashboard</span>
+      </a>
+      <a href="#" class="nav-item" data-view="reklamation">
+        <i class="fas fa-undo-alt"></i>
+        <span data-i18n="nav.reklamation">Reklamation</span>
+        <span class="nav-badge green">+4 200 kr</span>
+      </a>
+      <a href="#" class="nav-item" data-view="crossborder">
+        <i class="fas fa-globe-europe"></i>
+        <span data-i18n="nav.crossborder">Crossborder</span>
+      </a>
+      <a href="#" class="nav-item" data-view="labels">
+        <i class="fas fa-tag"></i>
+        <span data-i18n="nav.labels">Label Engine</span>
+      </a>
+      <a href="#" class="nav-item" data-view="analytics">
+        <i class="fas fa-chart-line"></i>
+        <span data-i18n="nav.analytics">Analytics</span>
+      </a>
+      <div class="nav-divider"></div>
+      <a href="#" class="nav-item">
+        <i class="fas fa-cog"></i>
+        <span data-i18n="nav.settings">Inst&auml;llningar</span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="user-avatar">AK</div>
+        <div class="user-info">
+          <span class="user-name">Anna Karlsson</span>
+          <span class="user-role">Admin</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main" id="main">
+    <!-- Top Bar -->
+    <header class="topbar">
+      <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="topbar-left">
+        <h1 class="page-title" id="pageTitle">Dashboard</h1>
+      </div>
+      <div class="topbar-right">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="S&ouml;k order, tracking..." data-i18n-placeholder="search.placeholder">
+        </div>
+        <button class="topbar-btn">
+          <i class="fas fa-bell"></i>
+          <span class="notification-dot"></span>
+        </button>
+        <div class="lang-selector">
+          <button class="lang-btn active" data-lang="sv">SV</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="no">NO</button>
+        </div>
+        <div class="company-selector" id="companySelector">
+          <div class="company-selector-trigger" id="companySelectorTrigger">
+            <i class="fas fa-building"></i>
+            <span class="company-selector-label" id="companySelectorLabel">Alla företag (3)</span>
+            <i class="fas fa-chevron-down company-selector-arrow"></i>
+          </div>
+          <div class="company-selector-dropdown" id="companySelectorDropdown">
+            <div class="company-selector-header">
+              <span data-i18n="company.select">Välj kunddata</span>
+              <button class="company-select-all" id="companySelectAll" data-i18n="company.all">Välj alla</button>
+            </div>
+            <label class="company-option" data-company="minbutik">
+              <input type="checkbox" checked value="minbutik">
+              <span class="company-check"><i class="fas fa-check"></i></span>
+              <i class="fab fa-shopify company-option-shopify"></i>
+              <div class="company-option-info">
+                <strong>MinButik.se</strong>
+                <span>Shopify Plus</span>
+              </div>
+            </label>
+            <label class="company-option" data-company="sportshop">
+              <input type="checkbox" checked value="sportshop">
+              <span class="company-check"><i class="fas fa-check"></i></span>
+              <i class="fab fa-shopify company-option-shopify"></i>
+              <div class="company-option-info">
+                <strong>SportShop.se</strong>
+                <span>Shopify</span>
+              </div>
+            </label>
+            <label class="company-option" data-company="nordicwear">
+              <input type="checkbox" checked value="nordicwear">
+              <span class="company-check"><i class="fas fa-check"></i></span>
+              <i class="fab fa-shopify company-option-shopify"></i>
+              <div class="company-option-info">
+                <strong>NordicWear.no</strong>
+                <span>Shopify</span>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- View: Dashboard -->
+    <div class="view active" id="view-dashboard">
+      <!-- KPI Row -->
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-icon blue"><i class="fas fa-box"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">1 247</span>
+            <span class="kpi-label" data-i18n="kpi.orders">Ordrar denna vecka</span>
+            <span class="kpi-change up" data-i18n="kpi.orders.change">+12% vs f&ouml;rra veckan</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon burgundy"><i class="fas fa-shipping-fast"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">98.2%</span>
+            <span class="kpi-label" data-i18n="kpi.ontime">Leverans i tid</span>
+            <span class="kpi-change up">+0.4%</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon green"><i class="fas fa-hand-holding-usd"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">14 320 kr</span>
+            <span class="kpi-label" data-i18n="kpi.recovered">&Aring;tervunnet denna m&aring;nad</span>
+            <span class="kpi-change up" data-i18n="kpi.recovered.sub">Reklamationer</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon orange"><i class="fas fa-exclamation-triangle"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">3</span>
+            <span class="kpi-label" data-i18n="kpi.attention">Kräver uppm&auml;rksamhet</span>
+            <span class="kpi-change down" data-i18n="kpi.attention.sub">Se Automat</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <h3 data-i18n="card.costs">Fraktkostnader per vecka</h3>
+            <select class="card-select">
+              <option>Senaste 8 veckorna</option>
+              <option>Senaste 12 veckorna</option>
+            </select>
+          </div>
+          <div class="chart-container">
+            <canvas id="costChart"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 data-i18n="card.carriers">Transport&ouml;rer - f&ouml;rdelning</h3>
+            <select class="card-select">
+              <option>Mars 2026</option>
+              <option>Februari 2026</option>
+            </select>
+          </div>
+          <div class="chart-container">
+            <canvas id="carrierChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activity & Stock -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <h3 data-i18n="card.activity">Senaste aktiviteter</h3>
+            <a href="#" class="card-link" data-i18n="card.activity.all">Visa alla</a>
+          </div>
+          <div class="activity-list">
+            <div class="activity-item" data-company="minbutik">
+              <div class="activity-icon red"><i class="fas fa-exclamation-circle"></i></div>
+              <div class="activity-content">
+                <span class="activity-text"><strong>F&ouml;rsenad leverans</strong> - Order #4821 fr&aring;n PostNord</span>
+                <span class="activity-time">12 min sedan</span>
+              </div>
+              <span class="company-badge minbutik">MinButik.se</span>
+              <span class="activity-badge warning">Automat</span>
+            </div>
+            <div class="activity-item" data-company="sportshop">
+              <div class="activity-icon green"><i class="fas fa-check-circle"></i></div>
+              <div class="activity-content">
+                <span class="activity-text"><strong>Reklamation godk&auml;nd</strong> - DHL case #R-2241, 2 100 kr</span>
+                <span class="activity-time">1 timme sedan</span>
+              </div>
+              <span class="company-badge sportshop">SportShop.se</span>
+              <span class="activity-badge success">Reklamation</span>
+            </div>
+            <div class="activity-item" data-company="minbutik">
+              <div class="activity-icon blue"><i class="fas fa-tag"></i></div>
+              <div class="activity-content">
+                <span class="activity-text"><strong>43 etiketter skapade</strong> - Batchjobb PostNord</span>
+                <span class="activity-time">2 timmar sedan</span>
+              </div>
+              <span class="company-badge minbutik">MinButik.se</span>
+              <span class="activity-badge info">Labels</span>
+            </div>
+            <div class="activity-item" data-company="nordicwear">
+              <div class="activity-icon orange"><i class="fas fa-chart-bar"></i></div>
+              <div class="activity-content">
+                <span class="activity-text"><strong>Lagervarning</strong> - SKU-1084 under 50 enheter</span>
+                <span class="activity-time">3 timmar sedan</span>
+              </div>
+              <span class="company-badge nordicwear">NordicWear.no</span>
+              <span class="activity-badge warning">Analytics</span>
+            </div>
+            <div class="activity-item" data-company="sportshop">
+              <div class="activity-icon burgundy"><i class="fas fa-file-invoice"></i></div>
+              <div class="activity-content">
+                <span class="activity-text"><strong>Faktura avvikelse</strong> - PostNord v.10, +847 kr &ouml;ver f&ouml;rv&auml;ntat</span>
+                <span class="activity-time">5 timmar sedan</span>
+              </div>
+              <span class="company-badge sportshop">SportShop.se</span>
+              <span class="activity-badge danger">Invoice Audit</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 data-i18n="card.stock">Lager&ouml;versikt</h3>
+            <a href="#" class="card-link" data-i18n="card.stock.link">Ink&ouml;psf&ouml;rslag &rarr;</a>
+          </div>
+          <div class="stock-list">
+            <div class="stock-item">
+              <div class="stock-info">
+                <span class="stock-name">Premium T-shirt Svart</span>
+                <span class="stock-sku">SKU-1084</span>
+              </div>
+              <div class="stock-bar-wrap">
+                <div class="stock-bar">
+                  <div class="stock-bar-fill critical" style="width: 15%"></div>
+                </div>
+                <span class="stock-count critical">38 st</span>
+              </div>
+            </div>
+            <div class="stock-item">
+              <div class="stock-info">
+                <span class="stock-name">Hoodie Gr&aring; Unisex</span>
+                <span class="stock-sku">SKU-2091</span>
+              </div>
+              <div class="stock-bar-wrap">
+                <div class="stock-bar">
+                  <div class="stock-bar-fill warning" style="width: 32%"></div>
+                </div>
+                <span class="stock-count warning">124 st</span>
+              </div>
+            </div>
+            <div class="stock-item">
+              <div class="stock-info">
+                <span class="stock-name">Sneakers Runner X</span>
+                <span class="stock-sku">SKU-3344</span>
+              </div>
+              <div class="stock-bar-wrap">
+                <div class="stock-bar">
+                  <div class="stock-bar-fill ok" style="width: 68%"></div>
+                </div>
+                <span class="stock-count ok">412 st</span>
+              </div>
+            </div>
+            <div class="stock-item">
+              <div class="stock-info">
+                <span class="stock-name">Weekendbag Leather</span>
+                <span class="stock-sku">SKU-4402</span>
+              </div>
+              <div class="stock-bar-wrap">
+                <div class="stock-bar">
+                  <div class="stock-bar-fill good" style="width: 85%"></div>
+                </div>
+                <span class="stock-count good">287 st</span>
+              </div>
+            </div>
+            <div class="stock-item">
+              <div class="stock-info">
+                <span class="stock-name">Solglasögon Retro</span>
+                <span class="stock-sku">SKU-5510</span>
+              </div>
+              <div class="stock-bar-wrap">
+                <div class="stock-bar">
+                  <div class="stock-bar-fill good" style="width: 92%"></div>
+                </div>
+                <span class="stock-count good">630 st</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- View: Automat (Track & Trace) -->
+    <div class="view" id="view-automat">
+      <div class="view-header">
+        <div>
+          <h2 data-i18n="automat.title">Automat &mdash; Track &amp; Trace</h2>
+          <p class="view-desc" data-i18n="automat.desc" data-i18n-html="1">Proaktiv bevakning av leveranser. Pushar aktiviteter f&ouml;r saker som <em>inte har h&auml;nt</em>.</p>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-outline" id="goToShipments"><i class="fas fa-truck"></i> <span data-i18n="automat.shipments">Visa f&ouml;rs&auml;ndelser</span></button>
+          <button class="btn btn-primary"><i class="fas fa-plus"></i> <span data-i18n="automat.newrule">Ny regel</span></button>
+        </div>
+      </div>
+
+      <!-- Alert Cards -->
+      <div class="alert-cards">
+        <div class="alert-card critical" data-company="minbutik">
+          <div class="alert-card-header">
+            <span class="alert-status"><i class="fas fa-exclamation-circle"></i> Kritisk</span>
+            <span class="company-badge minbutik">MinButik.se</span>
+            <span class="alert-time">12 min sedan</span>
+          </div>
+          <h4>Order #4821 &mdash; Ingen scanning p&aring; 48h</h4>
+          <p>PostNord har inte scannat paketet sedan upph&auml;mtning. F&ouml;rv&auml;ntad leverans var ig&aring;r.</p>
+          <div class="alert-meta">
+            <span><i class="fas fa-user"></i> Kund: Erik Lindgren</span>
+            <span><i class="fas fa-map-marker-alt"></i> G&ouml;teborg</span>
+          </div>
+          <div class="alert-actions">
+            <button class="btn btn-sm btn-primary">Kontakta transport&ouml;r</button>
+            <button class="btn btn-sm btn-outline">Notifiera kund</button>
+          </div>
+        </div>
+        <div class="alert-card warning" data-company="sportshop">
+          <div class="alert-card-header">
+            <span class="alert-status"><i class="fas fa-clock"></i> Varning</span>
+            <span class="company-badge sportshop">SportShop.se</span>
+            <span class="alert-time">2 timmar sedan</span>
+          </div>
+          <h4>Order #4798 &mdash; Fastnat i tullen</h4>
+          <p>DHL Express-paket fr&aring;n UK har varit i tullen i 3 dagar. Normalt max 24h.</p>
+          <div class="alert-meta">
+            <span><i class="fas fa-user"></i> Kund: Maria Svensson</span>
+            <span><i class="fas fa-map-marker-alt"></i> Stockholm</span>
+          </div>
+          <div class="alert-actions">
+            <button class="btn btn-sm btn-primary">Eskalera &auml;rende</button>
+            <button class="btn btn-sm btn-outline">Visa detaljer</button>
+          </div>
+        </div>
+        <div class="alert-card info" data-company="nordicwear">
+          <div class="alert-card-header">
+            <span class="alert-status"><i class="fas fa-info-circle"></i> Info</span>
+            <span class="company-badge nordicwear">NordicWear.no</span>
+            <span class="alert-time">5 timmar sedan</span>
+          </div>
+          <h4>3 paket &mdash; Omdirigerade till ombud</h4>
+          <p>Budbil kunde inte leverera. Paketen v&auml;ntar p&aring; utl&auml;mningsst&auml;lle.</p>
+          <div class="alert-meta">
+            <span><i class="fas fa-boxes"></i> 3 ordrar</span>
+            <span><i class="fas fa-store"></i> ICA Maxi Kungens Kurva</span>
+          </div>
+          <div class="alert-actions">
+            <button class="btn btn-sm btn-outline">Visa ordrar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rules table -->
+      <div class="card" style="margin-top: 24px;">
+        <div class="card-header">
+          <h3>Aktiva regler</h3>
+          <span class="rule-count">7 regler aktiva</span>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Regel</th>
+              <th>Trigger</th>
+              <th>Åtg&auml;rd</th>
+              <th>Tr&auml;ffar (30d)</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Ingen scanning 24h</strong></td>
+              <td>Paket ej scannat &gt; 24 timmar</td>
+              <td>Push + email till kund</td>
+              <td>23</td>
+              <td><span class="status-badge active">Aktiv</span></td>
+            </tr>
+            <tr>
+              <td><strong>Leveransf&ouml;rsening</strong></td>
+              <td>Passerat estimerad leverans</td>
+              <td>Alert i dashboard</td>
+              <td>41</td>
+              <td><span class="status-badge active">Aktiv</span></td>
+            </tr>
+            <tr>
+              <td><strong>Tullstopp &gt; 48h</strong></td>
+              <td>Fastnat i tull &ouml;ver 48h</td>
+              <td>Eskalering + notis</td>
+              <td>8</td>
+              <td><span class="status-badge active">Aktiv</span></td>
+            </tr>
+            <tr>
+              <td><strong>Retur ej mottagen</strong></td>
+              <td>Returpaket ej scannat &gt; 5 dagar</td>
+              <td>Alert + kund-notis</td>
+              <td>12</td>
+              <td><span class="status-badge active">Aktiv</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- View: Automat Shipments (sub-page) -->
+    <div class="view" id="view-automat-shipments">
+      <div class="view-header">
+        <div>
+          <button class="btn btn-outline btn-back" id="backToAutomat"><i class="fas fa-arrow-left"></i> <span data-i18n="shipments.back">Tillbaka</span></button>
+          <h2 style="margin-top: 12px;" data-i18n="shipments.title">F&ouml;rs&auml;ndelser per transport&ouml;r</h2>
+          <p class="view-desc" data-i18n="shipments.desc">Alla aktiva f&ouml;rs&auml;ndelser med detaljerad status och subaktiviteter.</p>
+        </div>
+      </div>
+
+      <!-- Carrier Tabs -->
+      <div class="carrier-tabs">
+        <button class="carrier-tab active" data-carrier="postnord">
+          <span class="carrier-tab-icon postnord">PN</span>
+          <div class="carrier-tab-info">
+            <strong>PostNord</strong>
+            <span>847 f&ouml;rs&auml;ndelser</span>
+          </div>
+          <span class="carrier-tab-count">12 aktiva</span>
+        </button>
+        <button class="carrier-tab" data-carrier="dhl">
+          <span class="carrier-tab-icon dhl">DHL</span>
+          <div class="carrier-tab-info">
+            <strong>DHL</strong>
+            <span>523 f&ouml;rs&auml;ndelser</span>
+          </div>
+          <span class="carrier-tab-count">8 aktiva</span>
+        </button>
+        <button class="carrier-tab" data-carrier="ups">
+          <span class="carrier-tab-icon ups">UPS</span>
+          <div class="carrier-tab-info">
+            <strong>UPS</strong>
+            <span>184 f&ouml;rs&auml;ndelser</span>
+          </div>
+          <span class="carrier-tab-count">5 aktiva</span>
+        </button>
+        <button class="carrier-tab" data-carrier="bring">
+          <span class="carrier-tab-icon bring">BR</span>
+          <div class="carrier-tab-info">
+            <strong>Bring</strong>
+            <span>92 f&ouml;rs&auml;ndelser</span>
+          </div>
+          <span class="carrier-tab-count">3 aktiva</span>
+        </button>
+      </div>
+
+      <!-- Shipment Filter Bar -->
+      <div class="shipment-toolbar">
+        <div class="filter-group">
+          <button class="filter-btn active">Alla</button>
+          <button class="filter-btn">I transit</button>
+          <button class="filter-btn">Levererad</button>
+          <button class="filter-btn">Problem</button>
+        </div>
+        <div class="search-box search-box-sm">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="S&ouml;k tracking, order...">
+        </div>
+      </div>
+
+      <!-- PostNord Shipments -->
+      <div class="carrier-panel active" id="panel-postnord">
+        <!-- Shipment 1 - Problem -->
+        <div class="shipment-card" data-status="problem" data-company="minbutik">
+          <div class="shipment-header" onclick="toggleShipment(this)">
+            <div class="shipment-status-dot critical"></div>
+            <div class="shipment-main">
+              <div class="shipment-id">
+                <strong>#PN-89401</strong>
+                <span class="company-badge minbutik sm">MinButik.se</span>
+                <span class="shipment-tracking">Tracking: 37012345678901234</span>
+              </div>
+              <div class="shipment-route">
+                <span>Stockholm</span>
+                <i class="fas fa-long-arrow-alt-right"></i>
+                <span>G&ouml;teborg</span>
+              </div>
+            </div>
+            <div class="shipment-meta">
+              <span class="shipment-order">Order #4821</span>
+              <span class="shipment-customer"><i class="fas fa-user"></i> Erik Lindgren</span>
+            </div>
+            <div class="shipment-status-wrap">
+              <span class="status-badge danger">Ingen scanning 48h</span>
+            </div>
+            <i class="fas fa-chevron-down shipment-toggle"></i>
+          </div>
+          <div class="shipment-details">
+            <div class="shipment-details-grid">
+              <div class="shipment-info-col">
+                <h5>F&ouml;rs&auml;ndelseinfo</h5>
+                <div class="detail-row"><span>Vikt:</span><strong>1.2 kg</strong></div>
+                <div class="detail-row"><span>Kolli:</span><strong>1 st</strong></div>
+                <div class="detail-row"><span>Tj&auml;nst:</span><strong>MyPack Home</strong></div>
+                <div class="detail-row"><span>Skapat:</span><strong>7 mars 09:14</strong></div>
+                <div class="detail-row"><span>F&ouml;rv&auml;ntad:</span><strong class="text-danger">9 mars (passerad)</strong></div>
+              </div>
+              <div class="shipment-timeline-col">
+                <h5>Aktiviteter</h5>
+                <div class="timeline">
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">7 mar 09:14</span>
+                      <span class="timeline-event">Etikett skapad</span>
+                      <span class="timeline-location">HappyFlow OS</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">7 mar 15:30</span>
+                      <span class="timeline-event">Upph&auml;mtad av transport&ouml;r</span>
+                      <span class="timeline-location">Lager Stockholm</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">7 mar 22:10</span>
+                      <span class="timeline-event">Anl&auml;nt till terminal</span>
+                      <span class="timeline-location">PostNord Terminal Rosersberg</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item alert">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">8 mar 06:45</span>
+                      <span class="timeline-event">Avg&aring;tt fr&aring;n terminal</span>
+                      <span class="timeline-location">PostNord Terminal Rosersberg</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item pending">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">&mdash;</span>
+                      <span class="timeline-event">Ankomst G&ouml;teborg terminal</span>
+                      <span class="timeline-sublabel critical"><i class="fas fa-exclamation-triangle"></i> Ingen scanning sedan 48+ timmar</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item pending">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">&mdash;</span>
+                      <span class="timeline-event">Ute f&ouml;r leverans</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item pending">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">&mdash;</span>
+                      <span class="timeline-event">Levererad</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="shipment-actions-bar">
+              <button class="btn btn-sm btn-primary"><i class="fas fa-phone"></i> Kontakta PostNord</button>
+              <button class="btn btn-sm btn-outline"><i class="fas fa-envelope"></i> Notifiera kund</button>
+              <button class="btn btn-sm btn-outline"><i class="fas fa-undo-alt"></i> Skapa reklamation</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shipment 2 - In transit -->
+        <div class="shipment-card" data-status="transit" data-company="sportshop">
+          <div class="shipment-header" onclick="toggleShipment(this)">
+            <div class="shipment-status-dot transit"></div>
+            <div class="shipment-main">
+              <div class="shipment-id">
+                <strong>#PN-89445</strong>
+                <span class="company-badge sportshop sm">SportShop.se</span>
+                <span class="shipment-tracking">Tracking: 37012345678904567</span>
+              </div>
+              <div class="shipment-route">
+                <span>Stockholm</span>
+                <i class="fas fa-long-arrow-alt-right"></i>
+                <span>Malm&ouml;</span>
+              </div>
+            </div>
+            <div class="shipment-meta">
+              <span class="shipment-order">Order #4856</span>
+              <span class="shipment-customer"><i class="fas fa-user"></i> Lisa &Ouml;stberg</span>
+            </div>
+            <div class="shipment-status-wrap">
+              <span class="status-badge active">I transit</span>
+            </div>
+            <i class="fas fa-chevron-down shipment-toggle"></i>
+          </div>
+          <div class="shipment-details">
+            <div class="shipment-details-grid">
+              <div class="shipment-info-col">
+                <h5>F&ouml;rs&auml;ndelseinfo</h5>
+                <div class="detail-row"><span>Vikt:</span><strong>2.8 kg</strong></div>
+                <div class="detail-row"><span>Kolli:</span><strong>1 st</strong></div>
+                <div class="detail-row"><span>Tj&auml;nst:</span><strong>MyPack Home</strong></div>
+                <div class="detail-row"><span>Skapat:</span><strong>9 mars 11:20</strong></div>
+                <div class="detail-row"><span>F&ouml;rv&auml;ntad:</span><strong>11 mars</strong></div>
+              </div>
+              <div class="shipment-timeline-col">
+                <h5>Aktiviteter</h5>
+                <div class="timeline">
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">9 mar 11:20</span>
+                      <span class="timeline-event">Etikett skapad</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">9 mar 16:00</span>
+                      <span class="timeline-event">Upph&auml;mtad av transport&ouml;r</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item active">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">10 mar 02:15</span>
+                      <span class="timeline-event">I transit mot Malm&ouml;</span>
+                      <span class="timeline-location">PostNord Terminal &Auml;lmhult</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item pending">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">&mdash;</span>
+                      <span class="timeline-event">Ute f&ouml;r leverans</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item pending">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">&mdash;</span>
+                      <span class="timeline-event">Levererad</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shipment 3 - Delivered -->
+        <div class="shipment-card" data-status="delivered" data-company="minbutik">
+          <div class="shipment-header" onclick="toggleShipment(this)">
+            <div class="shipment-status-dot delivered"></div>
+            <div class="shipment-main">
+              <div class="shipment-id">
+                <strong>#PN-89380</strong>
+                <span class="company-badge minbutik sm">MinButik.se</span>
+                <span class="shipment-tracking">Tracking: 37012345678907890</span>
+              </div>
+              <div class="shipment-route">
+                <span>Stockholm</span>
+                <i class="fas fa-long-arrow-alt-right"></i>
+                <span>Uppsala</span>
+              </div>
+            </div>
+            <div class="shipment-meta">
+              <span class="shipment-order">Order #4810</span>
+              <span class="shipment-customer"><i class="fas fa-user"></i> Johan Nilsson</span>
+            </div>
+            <div class="shipment-status-wrap">
+              <span class="status-badge resolved">Levererad</span>
+            </div>
+            <i class="fas fa-chevron-down shipment-toggle"></i>
+          </div>
+          <div class="shipment-details">
+            <div class="shipment-details-grid">
+              <div class="shipment-info-col">
+                <h5>F&ouml;rs&auml;ndelseinfo</h5>
+                <div class="detail-row"><span>Vikt:</span><strong>0.6 kg</strong></div>
+                <div class="detail-row"><span>Kolli:</span><strong>1 st</strong></div>
+                <div class="detail-row"><span>Tj&auml;nst:</span><strong>Varubrev 1:a klass</strong></div>
+                <div class="detail-row"><span>Skapat:</span><strong>8 mars 08:00</strong></div>
+                <div class="detail-row"><span>Levererad:</span><strong class="text-success">9 mars 14:22</strong></div>
+              </div>
+              <div class="shipment-timeline-col">
+                <h5>Aktiviteter</h5>
+                <div class="timeline">
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">8 mar 08:00</span>
+                      <span class="timeline-event">Etikett skapad</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">8 mar 15:45</span>
+                      <span class="timeline-event">Upph&auml;mtad av transport&ouml;r</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">9 mar 06:30</span>
+                      <span class="timeline-event">Sorterad p&aring; terminal</span>
+                      <span class="timeline-location">PostNord Rosersberg</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">9 mar 11:00</span>
+                      <span class="timeline-event">Ute f&ouml;r leverans</span>
+                      <span class="timeline-location">Uppsala</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item completed done">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">9 mar 14:22</span>
+                      <span class="timeline-event">Levererad till mottagare</span>
+                      <span class="timeline-location">Signerad: J. Nilsson</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shipment 4 - At service point -->
+        <div class="shipment-card" data-status="transit" data-company="nordicwear">
+          <div class="shipment-header" onclick="toggleShipment(this)">
+            <div class="shipment-status-dot warning"></div>
+            <div class="shipment-main">
+              <div class="shipment-id">
+                <strong>#PN-89412</strong>
+                <span class="company-badge nordicwear sm">NordicWear.no</span>
+                <span class="shipment-tracking">Tracking: 37012345678905432</span>
+              </div>
+              <div class="shipment-route">
+                <span>Stockholm</span>
+                <i class="fas fa-long-arrow-alt-right"></i>
+                <span>Kungens Kurva</span>
+              </div>
+            </div>
+            <div class="shipment-meta">
+              <span class="shipment-order">Order #4835</span>
+              <span class="shipment-customer"><i class="fas fa-user"></i> Sara Holm</span>
+            </div>
+            <div class="shipment-status-wrap">
+              <span class="status-badge warning">P&aring; ombud</span>
+            </div>
+            <i class="fas fa-chevron-down shipment-toggle"></i>
+          </div>
+          <div class="shipment-details">
+            <div class="shipment-details-grid">
+              <div class="shipment-info-col">
+                <h5>F&ouml;rs&auml;ndelseinfo</h5>
+                <div class="detail-row"><span>Vikt:</span><strong>4.1 kg</strong></div>
+                <div class="detail-row"><span>Kolli:</span><strong>2 st</strong></div>
+                <div class="detail-row"><span>Tj&auml;nst:</span><strong>MyPack Collect</strong></div>
+                <div class="detail-row"><span>Skapat:</span><strong>8 mars 10:30</strong></div>
+                <div class="detail-row"><span>H&auml;mtas senast:</span><strong class="text-warning">17 mars</strong></div>
+              </div>
+              <div class="shipment-timeline-col">
+                <h5>Aktiviteter</h5>
+                <div class="timeline">
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">8 mar 10:30</span>
+                      <span class="timeline-event">Etikett skapad</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">8 mar 16:10</span>
+                      <span class="timeline-event">Upph&auml;mtad av transport&ouml;r</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">9 mar 08:20</span>
+                      <span class="timeline-event">Sorterad p&aring; terminal</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item active">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">9 mar 14:55</span>
+                      <span class="timeline-event">Anl&auml;nt till utl&auml;mningsst&auml;lle</span>
+                      <span class="timeline-location"><i class="fas fa-store"></i> ICA Maxi Kungens Kurva</span>
+                      <span class="timeline-sublabel warning"><i class="fas fa-clock"></i> V&auml;ntar p&aring; avh&auml;mtning — 7 dagar kvar</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item pending">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">&mdash;</span>
+                      <span class="timeline-event">Uth&auml;mtad av kund</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DHL Shipments -->
+      <div class="carrier-panel" id="panel-dhl">
+        <div class="shipment-card" data-status="problem" data-company="sportshop">
+          <div class="shipment-header" onclick="toggleShipment(this)">
+            <div class="shipment-status-dot critical"></div>
+            <div class="shipment-main">
+              <div class="shipment-id">
+                <strong>#DHL-44298</strong>
+                <span class="company-badge sportshop sm">SportShop.se</span>
+                <span class="shipment-tracking">Tracking: JD014600003812345678</span>
+              </div>
+              <div class="shipment-route">
+                <span>London, UK</span>
+                <i class="fas fa-long-arrow-alt-right"></i>
+                <span>Stockholm</span>
+              </div>
+            </div>
+            <div class="shipment-meta">
+              <span class="shipment-order">Order #4798</span>
+              <span class="shipment-customer"><i class="fas fa-user"></i> Maria Svensson</span>
+            </div>
+            <div class="shipment-status-wrap">
+              <span class="status-badge danger">Fastnat i tull</span>
+            </div>
+            <i class="fas fa-chevron-down shipment-toggle"></i>
+          </div>
+          <div class="shipment-details">
+            <div class="shipment-details-grid">
+              <div class="shipment-info-col">
+                <h5>F&ouml;rs&auml;ndelseinfo</h5>
+                <div class="detail-row"><span>Vikt:</span><strong>5.4 kg</strong></div>
+                <div class="detail-row"><span>Kolli:</span><strong>1 st</strong></div>
+                <div class="detail-row"><span>Tj&auml;nst:</span><strong>DHL Express</strong></div>
+                <div class="detail-row"><span>Skapat:</span><strong>5 mars 14:00</strong></div>
+                <div class="detail-row"><span>F&ouml;rv&auml;ntad:</span><strong class="text-danger">7 mars (passerad)</strong></div>
+              </div>
+              <div class="shipment-timeline-col">
+                <h5>Aktiviteter</h5>
+                <div class="timeline">
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">5 mar 14:00</span>
+                      <span class="timeline-event">Etikett skapad</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">5 mar 18:30</span>
+                      <span class="timeline-event">Upph&auml;mtad fr&aring;n avs&auml;ndare</span>
+                      <span class="timeline-location">London Heathrow Hub</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">6 mar 04:10</span>
+                      <span class="timeline-event">Avg&aring;tt fr&aring;n ursprungsland</span>
+                      <span class="timeline-location">London &rarr; Stockholm</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">6 mar 08:20</span>
+                      <span class="timeline-event">Anl&auml;nt till destinationsland</span>
+                      <span class="timeline-location">Arlanda, Sverige</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item alert">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">6 mar 09:00</span>
+                      <span class="timeline-event">Tullbehandling p&aring;b&ouml;rjad</span>
+                      <span class="timeline-location">Tullverket, Arlanda</span>
+                      <span class="timeline-sublabel critical"><i class="fas fa-exclamation-triangle"></i> Fastnat i tull &mdash; 4 dagar (normalt max 24h)</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item pending">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">&mdash;</span>
+                      <span class="timeline-event">Tullklarerad</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item pending">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">&mdash;</span>
+                      <span class="timeline-event">Levererad</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="shipment-actions-bar">
+              <button class="btn btn-sm btn-primary"><i class="fas fa-phone"></i> Eskalera till DHL</button>
+              <button class="btn btn-sm btn-outline"><i class="fas fa-file-alt"></i> Tullhandlingar</button>
+              <button class="btn btn-sm btn-outline"><i class="fas fa-envelope"></i> Notifiera kund</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="shipment-card" data-status="transit" data-company="minbutik">
+          <div class="shipment-header" onclick="toggleShipment(this)">
+            <div class="shipment-status-dot transit"></div>
+            <div class="shipment-main">
+              <div class="shipment-id">
+                <strong>#DHL-44310</strong>
+                <span class="company-badge minbutik sm">MinButik.se</span>
+                <span class="shipment-tracking">Tracking: JD014600003898765</span>
+              </div>
+              <div class="shipment-route">
+                <span>Stockholm</span>
+                <i class="fas fa-long-arrow-alt-right"></i>
+                <span>Link&ouml;ping</span>
+              </div>
+            </div>
+            <div class="shipment-meta">
+              <span class="shipment-order">Order #4862</span>
+              <span class="shipment-customer"><i class="fas fa-user"></i> Anders Berg</span>
+            </div>
+            <div class="shipment-status-wrap">
+              <span class="status-badge active">I transit</span>
+            </div>
+            <i class="fas fa-chevron-down shipment-toggle"></i>
+          </div>
+          <div class="shipment-details">
+            <div class="shipment-details-grid">
+              <div class="shipment-info-col">
+                <h5>F&ouml;rs&auml;ndelseinfo</h5>
+                <div class="detail-row"><span>Vikt:</span><strong>3.2 kg</strong></div>
+                <div class="detail-row"><span>Kolli:</span><strong>1 st</strong></div>
+                <div class="detail-row"><span>Tj&auml;nst:</span><strong>DHL Service Point</strong></div>
+                <div class="detail-row"><span>Skapat:</span><strong>10 mars 08:00</strong></div>
+                <div class="detail-row"><span>F&ouml;rv&auml;ntad:</span><strong>11 mars</strong></div>
+              </div>
+              <div class="shipment-timeline-col">
+                <h5>Aktiviteter</h5>
+                <div class="timeline">
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">10 mar 08:00</span>
+                      <span class="timeline-event">Etikett skapad</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item active">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">10 mar 12:40</span>
+                      <span class="timeline-event">Upph&auml;mtad &mdash; p&aring; v&auml;g till hub</span>
+                      <span class="timeline-location">DHL Hub Stockholm</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item pending">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">&mdash;</span>
+                      <span class="timeline-event">Anl&auml;nt DHL Service Point</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- UPS Shipments -->
+      <div class="carrier-panel" id="panel-ups">
+        <div class="shipment-card" data-status="transit" data-company="nordicwear">
+          <div class="shipment-header" onclick="toggleShipment(this)">
+            <div class="shipment-status-dot transit"></div>
+            <div class="shipment-main">
+              <div class="shipment-id">
+                <strong>#UPS-78120</strong>
+                <span class="company-badge nordicwear sm">NordicWear.no</span>
+                <span class="shipment-tracking">Tracking: 1Z9999999999999999</span>
+              </div>
+              <div class="shipment-route">
+                <span>Berlin, DE</span>
+                <i class="fas fa-long-arrow-alt-right"></i>
+                <span>Stockholm</span>
+              </div>
+            </div>
+            <div class="shipment-meta">
+              <span class="shipment-order">Order #4870</span>
+              <span class="shipment-customer"><i class="fas fa-user"></i> Petra Ekstr&ouml;m</span>
+            </div>
+            <div class="shipment-status-wrap">
+              <span class="status-badge active">I transit</span>
+            </div>
+            <i class="fas fa-chevron-down shipment-toggle"></i>
+          </div>
+          <div class="shipment-details">
+            <div class="shipment-details-grid">
+              <div class="shipment-info-col">
+                <h5>F&ouml;rs&auml;ndelseinfo</h5>
+                <div class="detail-row"><span>Vikt:</span><strong>8.5 kg</strong></div>
+                <div class="detail-row"><span>Kolli:</span><strong>2 st</strong></div>
+                <div class="detail-row"><span>Tj&auml;nst:</span><strong>UPS Standard</strong></div>
+                <div class="detail-row"><span>Skapat:</span><strong>8 mars 12:00</strong></div>
+                <div class="detail-row"><span>F&ouml;rv&auml;ntad:</span><strong>12 mars</strong></div>
+              </div>
+              <div class="shipment-timeline-col">
+                <h5>Aktiviteter</h5>
+                <div class="timeline">
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">8 mar 12:00</span>
+                      <span class="timeline-event">Order registrerad</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">8 mar 17:30</span>
+                      <span class="timeline-event">Upph&auml;mtad i Berlin</span>
+                      <span class="timeline-location">UPS Hub Berlin-Sch&ouml;nefeld</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">9 mar 14:20</span>
+                      <span class="timeline-event">Anl&auml;nt till mellanstation</span>
+                      <span class="timeline-location">UPS Hub Hamburg</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item active">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">10 mar 03:15</span>
+                      <span class="timeline-event">I transit mot Sverige</span>
+                      <span class="timeline-location">P&aring; v&auml;g via Danmark</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item pending">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">&mdash;</span>
+                      <span class="timeline-event">Anl&auml;nt Sverige</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item pending">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">&mdash;</span>
+                      <span class="timeline-event">Levererad</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bring Shipments -->
+      <div class="carrier-panel" id="panel-bring">
+        <div class="shipment-card" data-status="delivered" data-company="nordicwear">
+          <div class="shipment-header" onclick="toggleShipment(this)">
+            <div class="shipment-status-dot delivered"></div>
+            <div class="shipment-main">
+              <div class="shipment-id">
+                <strong>#BRING-55210</strong>
+                <span class="company-badge nordicwear sm">NordicWear.no</span>
+                <span class="shipment-tracking">Tracking: TESTPACKAGE-NO-1234</span>
+              </div>
+              <div class="shipment-route">
+                <span>Stockholm</span>
+                <i class="fas fa-long-arrow-alt-right"></i>
+                <span>Oslo, NO</span>
+              </div>
+            </div>
+            <div class="shipment-meta">
+              <span class="shipment-order">Order #4842</span>
+              <span class="shipment-customer"><i class="fas fa-user"></i> Olav Hansen</span>
+            </div>
+            <div class="shipment-status-wrap">
+              <span class="status-badge resolved">Levererad</span>
+            </div>
+            <i class="fas fa-chevron-down shipment-toggle"></i>
+          </div>
+          <div class="shipment-details">
+            <div class="shipment-details-grid">
+              <div class="shipment-info-col">
+                <h5>F&ouml;rs&auml;ndelseinfo</h5>
+                <div class="detail-row"><span>Vikt:</span><strong>1.8 kg</strong></div>
+                <div class="detail-row"><span>Kolli:</span><strong>1 st</strong></div>
+                <div class="detail-row"><span>Tj&auml;nst:</span><strong>Bring Pakke i Postkassen</strong></div>
+                <div class="detail-row"><span>Skapat:</span><strong>7 mars 09:00</strong></div>
+                <div class="detail-row"><span>Levererad:</span><strong class="text-success">9 mars 10:05</strong></div>
+              </div>
+              <div class="shipment-timeline-col">
+                <h5>Aktiviteter</h5>
+                <div class="timeline">
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">7 mar 09:00</span>
+                      <span class="timeline-event">Etikett skapad</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">7 mar 16:20</span>
+                      <span class="timeline-event">Upph&auml;mtad</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">8 mar 04:00</span>
+                      <span class="timeline-event">Passerat gr&auml;nsen SE &rarr; NO</span>
+                      <span class="timeline-location">Svinesund</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">8 mar 22:40</span>
+                      <span class="timeline-event">Anl&auml;nt Bring terminal</span>
+                      <span class="timeline-location">Oslo Logistics Hub</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item completed done">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">9 mar 10:05</span>
+                      <span class="timeline-event">Levererad i postl&aring;dan</span>
+                      <span class="timeline-location">Oslo, Gr&uuml;nerl&oslash;kka</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="shipment-card" data-status="transit">
+          <div class="shipment-header" onclick="toggleShipment(this)">
+            <div class="shipment-status-dot transit"></div>
+            <div class="shipment-main">
+              <div class="shipment-id">
+                <strong>#BRING-55248</strong>
+                <span class="shipment-tracking">Tracking: TESTPACKAGE-NO-5678</span>
+              </div>
+              <div class="shipment-route">
+                <span>G&ouml;teborg</span>
+                <i class="fas fa-long-arrow-alt-right"></i>
+                <span>Bergen, NO</span>
+              </div>
+            </div>
+            <div class="shipment-meta">
+              <span class="shipment-order">Order #4878</span>
+              <span class="shipment-customer"><i class="fas fa-user"></i> Kari Johansen</span>
+            </div>
+            <div class="shipment-status-wrap">
+              <span class="status-badge active">I transit</span>
+            </div>
+            <i class="fas fa-chevron-down shipment-toggle"></i>
+          </div>
+          <div class="shipment-details">
+            <div class="shipment-details-grid">
+              <div class="shipment-info-col">
+                <h5>F&ouml;rs&auml;ndelseinfo</h5>
+                <div class="detail-row"><span>Vikt:</span><strong>3.0 kg</strong></div>
+                <div class="detail-row"><span>Kolli:</span><strong>1 st</strong></div>
+                <div class="detail-row"><span>Tj&auml;nst:</span><strong>Bring Express Nordic</strong></div>
+                <div class="detail-row"><span>Skapat:</span><strong>9 mars 14:00</strong></div>
+                <div class="detail-row"><span>F&ouml;rv&auml;ntad:</span><strong>11 mars</strong></div>
+              </div>
+              <div class="shipment-timeline-col">
+                <h5>Aktiviteter</h5>
+                <div class="timeline">
+                  <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">9 mar 14:00</span>
+                      <span class="timeline-event">Etikett skapad</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item active">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">10 mar 06:30</span>
+                      <span class="timeline-event">I transit mot Norge</span>
+                      <span class="timeline-location">Bring Hub G&ouml;teborg</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item pending">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">&mdash;</span>
+                      <span class="timeline-event">Anl&auml;nt Bergen</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item pending">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <span class="timeline-time">&mdash;</span>
+                      <span class="timeline-event">Levererad</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- View: Invoice Audit -->
+    <div class="view" id="view-invoice">
+      <div class="view-header">
+        <div>
+          <h2 data-i18n="invoice.title">Invoice Audit</h2>
+          <p class="view-desc" data-i18n="invoice.desc">Veckovis kontroll av fraktkostnader. Se avvikelser och trender.</p>
+        </div>
+        <button class="btn btn-primary"><i class="fas fa-upload"></i> Importera faktura</button>
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-icon burgundy"><i class="fas fa-file-invoice-dollar"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">84 320 kr</span>
+            <span class="kpi-label">Total fraktkostnad v.10</span>
+            <span class="kpi-change down">+3.2% vs v.9</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon orange"><i class="fas fa-search-dollar"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">2 847 kr</span>
+            <span class="kpi-label">Avvikelse fr&aring;n avtal</span>
+            <span class="kpi-change down">Att utreda</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon green"><i class="fas fa-piggy-bank"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">12 100 kr</span>
+            <span class="kpi-label">Besparing YTD</span>
+            <span class="kpi-change up">Via audit</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon blue"><i class="fas fa-balance-scale"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">47.20 kr</span>
+            <span class="kpi-label">Snitt per kolli</span>
+            <span class="kpi-change up">-1.3% vs f.m.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Faktura&ouml;versikt per vecka</h3>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Vecka</th>
+              <th>Transport&ouml;r</th>
+              <th>Antal kolli</th>
+              <th>Fakturerat</th>
+              <th>F&ouml;rv&auml;ntat</th>
+              <th>Avvikelse</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-company="minbutik">
+              <td>v.10</td>
+              <td><i class="fas fa-truck"></i> PostNord</td>
+              <td>847</td>
+              <td>42 350 kr</td>
+              <td>41 503 kr</td>
+              <td class="text-danger">+847 kr</td>
+              <td><span class="status-badge warning">Utreder</span></td>
+            </tr>
+            <tr data-company="sportshop">
+              <td>v.10</td>
+              <td><i class="fas fa-truck"></i> DHL</td>
+              <td>523</td>
+              <td>31 470 kr</td>
+              <td>29 470 kr</td>
+              <td class="text-danger">+2 000 kr</td>
+              <td><span class="status-badge warning">Utreder</span></td>
+            </tr>
+            <tr data-company="nordicwear">
+              <td>v.10</td>
+              <td><i class="fas fa-truck"></i> Budbee</td>
+              <td>184</td>
+              <td>10 500 kr</td>
+              <td>10 500 kr</td>
+              <td class="text-success">0 kr</td>
+              <td><span class="status-badge active">OK</span></td>
+            </tr>
+            <tr data-company="minbutik">
+              <td>v.9</td>
+              <td><i class="fas fa-truck"></i> PostNord</td>
+              <td>792</td>
+              <td>39 600 kr</td>
+              <td>39 204 kr</td>
+              <td class="text-danger">+396 kr</td>
+              <td><span class="status-badge resolved">L&ouml;st</span></td>
+            </tr>
+            <tr data-company="sportshop">
+              <td>v.9</td>
+              <td><i class="fas fa-truck"></i> DHL</td>
+              <td>498</td>
+              <td>28 200 kr</td>
+              <td>28 200 kr</td>
+              <td class="text-success">0 kr</td>
+              <td><span class="status-badge active">OK</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- View: Cost Dashboard (kundsida) -->
+    <div class="view" id="view-costs">
+      <div class="view-header">
+        <div>
+          <h2 data-i18n="costs.title">Cost Dashboard</h2>
+          <p class="view-desc" data-i18n="costs.desc">Överblick av era fraktkostnader, trender och besparingsmöjligheter.</p>
+        </div>
+        <div class="btn-group">
+          <select class="card-select" id="costPeriodSelect" style="padding: 10px 16px; font-size: 13px;">
+            <option value="month" data-i18n-opt="costs.thismonth">Mars 2026</option>
+            <option value="quarter">Q1 2026</option>
+            <option value="ytd">YTD 2026</option>
+            <option value="12m" data-i18n-opt="costs.12m">Senaste 12 mån</option>
+          </select>
+          <button class="btn btn-outline"><i class="fas fa-download"></i> <span data-i18n="costs.export">Exportera</span></button>
+        </div>
+      </div>
+
+      <!-- Cost KPIs -->
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-icon burgundy"><i class="fas fa-coins"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value" data-i18n="costs.total.value">248 640 kr</span>
+            <span class="kpi-label" data-i18n="costs.total">Total fraktkostnad</span>
+            <span class="kpi-change down">+4.1% vs förra månaden</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon blue"><i class="fas fa-box"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">47.20 kr</span>
+            <span class="kpi-label" data-i18n="costs.perparcel">Kostnad per kolli</span>
+            <span class="kpi-change up">-2.3% vs förra månaden</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon green"><i class="fas fa-piggy-bank"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">18 420 kr</span>
+            <span class="kpi-label" data-i18n="costs.savings">Besparingar (identifierade)</span>
+            <span class="kpi-change up">Via Invoice Audit + Reklamation</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon orange"><i class="fas fa-shipping-fast"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">5 268</span>
+            <span class="kpi-label" data-i18n="costs.shipments">Försändelser totalt</span>
+            <span class="kpi-change up">+8% vs förra månaden</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <h3 data-i18n="costs.trend">Kostnadstrend</h3>
+            <select class="card-select">
+              <option>Per vecka</option>
+              <option>Per månad</option>
+            </select>
+          </div>
+          <div class="chart-container">
+            <canvas id="costTrendChart"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 data-i18n="costs.bycarrier">Kostnad per transportör</h3>
+          </div>
+          <div class="chart-container">
+            <canvas id="costByCarrierChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cost Breakdown Table -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <h3 data-i18n="costs.breakdown">Kostnadsfördelning</h3>
+          </div>
+          <div class="cost-breakdown-list">
+            <div class="cost-breakdown-item">
+              <div class="cost-breakdown-carrier">
+                <span class="carrier-dot" style="background: var(--burgundy);"></span>
+                <strong>PostNord</strong>
+              </div>
+              <div class="cost-breakdown-details">
+                <div class="cost-breakdown-bar-wrap">
+                  <div class="cost-breakdown-bar" style="width: 52%; background: var(--burgundy);"></div>
+                </div>
+                <div class="cost-breakdown-values">
+                  <span class="cost-breakdown-amount">129 290 kr</span>
+                  <span class="cost-breakdown-pct">52%</span>
+                </div>
+              </div>
+              <div class="cost-breakdown-meta">
+                <span>2 741 kolli</span>
+                <span>47.10 kr/st</span>
+              </div>
+            </div>
+            <div class="cost-breakdown-item">
+              <div class="cost-breakdown-carrier">
+                <span class="carrier-dot" style="background: var(--blue);"></span>
+                <strong>DHL</strong>
+              </div>
+              <div class="cost-breakdown-details">
+                <div class="cost-breakdown-bar-wrap">
+                  <div class="cost-breakdown-bar" style="width: 30%; background: var(--blue);"></div>
+                </div>
+                <div class="cost-breakdown-values">
+                  <span class="cost-breakdown-amount">74 592 kr</span>
+                  <span class="cost-breakdown-pct">30%</span>
+                </div>
+              </div>
+              <div class="cost-breakdown-meta">
+                <span>1 318 kolli</span>
+                <span>56.60 kr/st</span>
+              </div>
+            </div>
+            <div class="cost-breakdown-item">
+              <div class="cost-breakdown-carrier">
+                <span class="carrier-dot" style="background: var(--green);"></span>
+                <strong>Budbee</strong>
+              </div>
+              <div class="cost-breakdown-details">
+                <div class="cost-breakdown-bar-wrap">
+                  <div class="cost-breakdown-bar" style="width: 12%; background: var(--green);"></div>
+                </div>
+                <div class="cost-breakdown-values">
+                  <span class="cost-breakdown-amount">29 837 kr</span>
+                  <span class="cost-breakdown-pct">12%</span>
+                </div>
+              </div>
+              <div class="cost-breakdown-meta">
+                <span>843 kolli</span>
+                <span>35.40 kr/st</span>
+              </div>
+            </div>
+            <div class="cost-breakdown-item">
+              <div class="cost-breakdown-carrier">
+                <span class="carrier-dot" style="background: var(--gray-400);"></span>
+                <strong>Övrigt</strong>
+              </div>
+              <div class="cost-breakdown-details">
+                <div class="cost-breakdown-bar-wrap">
+                  <div class="cost-breakdown-bar" style="width: 6%; background: var(--gray-400);"></div>
+                </div>
+                <div class="cost-breakdown-values">
+                  <span class="cost-breakdown-amount">14 921 kr</span>
+                  <span class="cost-breakdown-pct">6%</span>
+                </div>
+              </div>
+              <div class="cost-breakdown-meta">
+                <span>366 kolli</span>
+                <span>40.80 kr/st</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Savings & Insights -->
+        <div class="card">
+          <div class="card-header">
+            <h3 data-i18n="costs.insights">Insikter & Besparingar</h3>
+          </div>
+          <div class="cost-insights-list">
+            <div class="cost-insight-item savings">
+              <div class="cost-insight-icon"><i class="fas fa-check-circle"></i></div>
+              <div class="cost-insight-content">
+                <strong>Reklamationer återvunna</strong>
+                <p>14 320 kr återvunnet via automatiserade reklamationer mot transportörer denna månad.</p>
+              </div>
+              <span class="cost-insight-value text-success">+14 320 kr</span>
+            </div>
+            <div class="cost-insight-item savings">
+              <div class="cost-insight-icon"><i class="fas fa-search-dollar"></i></div>
+              <div class="cost-insight-content">
+                <strong>Fakturavvikelser hittade</strong>
+                <p>Invoice Audit identifierade 4 100 kr i felaktiga debiteringar från transportörer.</p>
+              </div>
+              <span class="cost-insight-value text-success">+4 100 kr</span>
+            </div>
+            <div class="cost-insight-item tip">
+              <div class="cost-insight-icon"><i class="fas fa-lightbulb"></i></div>
+              <div class="cost-insight-content">
+                <strong>Optimeringsförslag</strong>
+                <p>32% av era DHL-paket under 1 kg skulle bli billigare med PostNord Varubrev. Uppskattad besparing: ~3 200 kr/mån.</p>
+              </div>
+              <span class="cost-insight-value tip-value">~3 200 kr</span>
+            </div>
+            <div class="cost-insight-item tip">
+              <div class="cost-insight-icon"><i class="fas fa-route"></i></div>
+              <div class="cost-insight-content">
+                <strong>Konsolidera leveranser</strong>
+                <p>14% av ordrar till samma postnummer skickades separat. Konsolidering kan spara ~1 800 kr/mån.</p>
+              </div>
+              <span class="cost-insight-value tip-value">~1 800 kr</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Monthly comparison table -->
+      <div class="card" style="margin-top: 4px;">
+        <div class="card-header">
+          <h3 data-i18n="costs.monthly">Månadsjämförelse</h3>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Månad</th>
+              <th>Försändelser</th>
+              <th>Total kostnad</th>
+              <th>Kostnad/kolli</th>
+              <th>Besparingar</th>
+              <th>Förändring</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Mars 2026</strong></td>
+              <td>5 268</td>
+              <td>248 640 kr</td>
+              <td>47.20 kr</td>
+              <td class="text-success">18 420 kr</td>
+              <td class="text-danger">+4.1%</td>
+            </tr>
+            <tr>
+              <td>Februari 2026</td>
+              <td>4 872</td>
+              <td>238 820 kr</td>
+              <td>49.00 kr</td>
+              <td class="text-success">15 200 kr</td>
+              <td class="text-danger">+1.2%</td>
+            </tr>
+            <tr>
+              <td>Januari 2026</td>
+              <td>4 510</td>
+              <td>235 980 kr</td>
+              <td>52.30 kr</td>
+              <td class="text-success">12 100 kr</td>
+              <td class="text-success">-3.8%</td>
+            </tr>
+            <tr>
+              <td>December 2025</td>
+              <td>6 840</td>
+              <td>245 200 kr</td>
+              <td>35.80 kr</td>
+              <td class="text-success">22 400 kr</td>
+              <td class="text-danger">+18.2%</td>
+            </tr>
+            <tr>
+              <td>November 2025</td>
+              <td>4 120</td>
+              <td>207 500 kr</td>
+              <td>50.40 kr</td>
+              <td class="text-success">9 800 kr</td>
+              <td class="text-success">-2.1%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- View: Reklamation -->
+    <div class="view" id="view-reklamation">
+      <div class="view-header">
+        <div>
+          <h2 data-i18n="reklam.title">Reklamation</h2>
+          <p class="view-desc" data-i18n="reklam.desc">Automatiserad reklamationshantering mot transport&ouml;rer. HFL tar 10% av &aring;tervunnet v&auml;rde.</p>
+        </div>
+        <button class="btn btn-primary"><i class="fas fa-plus"></i> Nytt &auml;rende</button>
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-icon green"><i class="fas fa-coins"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">143 200 kr</span>
+            <span class="kpi-label">&Aring;tervunnet totalt (YTD)</span>
+            <span class="kpi-change up">128 880 kr netto</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon burgundy"><i class="fas fa-percentage"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">78%</span>
+            <span class="kpi-label">Godk&auml;nnandegrad</span>
+            <span class="kpi-change up">+5% vs 2025</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon blue"><i class="fas fa-hourglass-half"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">4.2 dagar</span>
+            <span class="kpi-label">Snitt handl&auml;ggningstid</span>
+            <span class="kpi-change up">-1.8 dagar</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon orange"><i class="fas fa-folder-open"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">12</span>
+            <span class="kpi-label">&Ouml;ppna &auml;renden</span>
+            <span class="kpi-change">P&aring;g&aring;r</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Reklamations&auml;renden</h3>
+          <div class="filter-group">
+            <button class="filter-btn active">Alla</button>
+            <button class="filter-btn">&Ouml;ppna</button>
+            <button class="filter-btn">Godk&auml;nda</button>
+            <button class="filter-btn">Nekade</button>
+          </div>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Case ID</th>
+              <th>Transport&ouml;r</th>
+              <th>Order</th>
+              <th>Typ</th>
+              <th>Belopp</th>
+              <th>&Aring;tervunnet</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-company="minbutik">
+              <td><strong>#R-2254</strong></td>
+              <td>PostNord</td>
+              <td>#4821 <span class="company-badge minbutik sm">MinButik.se</span></td>
+              <td>F&ouml;rsenad</td>
+              <td>1 200 kr</td>
+              <td>&mdash;</td>
+              <td><span class="status-badge warning">P&aring;g&aring;r</span></td>
+            </tr>
+            <tr data-company="sportshop">
+              <td><strong>#R-2241</strong></td>
+              <td>DHL</td>
+              <td>#4687 <span class="company-badge sportshop sm">SportShop.se</span></td>
+              <td>Skada</td>
+              <td>2 400 kr</td>
+              <td class="text-success">2 100 kr</td>
+              <td><span class="status-badge active">Godk&auml;nd</span></td>
+            </tr>
+            <tr data-company="nordicwear">
+              <td><strong>#R-2238</strong></td>
+              <td>Budbee</td>
+              <td>#4655 <span class="company-badge nordicwear sm">NordicWear.no</span></td>
+              <td>Borttappat</td>
+              <td>890 kr</td>
+              <td class="text-success">890 kr</td>
+              <td><span class="status-badge active">Godk&auml;nd</span></td>
+            </tr>
+            <tr data-company="minbutik">
+              <td><strong>#R-2230</strong></td>
+              <td>PostNord</td>
+              <td>#4601 <span class="company-badge minbutik sm">MinButik.se</span></td>
+              <td>Felleverans</td>
+              <td>3 200 kr</td>
+              <td class="text-danger">0 kr</td>
+              <td><span class="status-badge danger">Nekad</span></td>
+            </tr>
+            <tr data-company="sportshop">
+              <td><strong>#R-2225</strong></td>
+              <td>DHL</td>
+              <td>#4580 <span class="company-badge sportshop sm">SportShop.se</span></td>
+              <td>F&ouml;rsenad</td>
+              <td>1 800 kr</td>
+              <td class="text-success">1 210 kr</td>
+              <td><span class="status-badge active">Godk&auml;nd</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- View: Crossborder -->
+    <div class="view" id="view-crossborder">
+      <div class="view-header">
+        <div>
+          <h2 data-i18n="cross.title">Crossborder</h2>
+          <p class="view-desc" data-i18n="cross.desc">Internationell frakt via Worldease. Tull, moms och compliance p&aring; ett st&auml;lle.</p>
+        </div>
+        <button class="btn btn-primary"><i class="fas fa-globe"></i> Ny crossborder-order</button>
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-icon blue"><i class="fas fa-globe-europe"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">14</span>
+            <span class="kpi-label">L&auml;nder aktiva</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon burgundy"><i class="fas fa-plane-departure"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">312</span>
+            <span class="kpi-label">Internationella ordrar (mars)</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon green"><i class="fas fa-check-double"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">99.1%</span>
+            <span class="kpi-label">Tull-compliance</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon orange"><i class="fas fa-clock"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">3.8 dagar</span>
+            <span class="kpi-label">Snitt transittid EU</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Marknader</h3>
+        </div>
+        <div class="market-grid">
+          <div class="market-card">
+            <div class="market-flag">&#127465;&#127472;</div>
+            <div class="market-info">
+              <h4>Danmark</h4>
+              <span>84 ordrar</span>
+            </div>
+            <span class="status-badge active">Aktiv</span>
+          </div>
+          <div class="market-card">
+            <div class="market-flag">&#127475;&#127476;</div>
+            <div class="market-info">
+              <h4>Norge</h4>
+              <span>67 ordrar</span>
+            </div>
+            <span class="status-badge active">Aktiv</span>
+          </div>
+          <div class="market-card">
+            <div class="market-flag">&#127467;&#127470;</div>
+            <div class="market-info">
+              <h4>Finland</h4>
+              <span>52 ordrar</span>
+            </div>
+            <span class="status-badge active">Aktiv</span>
+          </div>
+          <div class="market-card">
+            <div class="market-flag">&#127465;&#127466;</div>
+            <div class="market-info">
+              <h4>Tyskland</h4>
+              <span>41 ordrar</span>
+            </div>
+            <span class="status-badge active">Aktiv</span>
+          </div>
+          <div class="market-card">
+            <div class="market-flag">&#127475;&#127473;</div>
+            <div class="market-info">
+              <h4>Nederl&auml;nderna</h4>
+              <span>28 ordrar</span>
+            </div>
+            <span class="status-badge active">Aktiv</span>
+          </div>
+          <div class="market-card">
+            <div class="market-flag">&#127468;&#127463;</div>
+            <div class="market-info">
+              <h4>Storbritannien</h4>
+              <span>22 ordrar</span>
+            </div>
+            <span class="status-badge warning">Tull</span>
+          </div>
+          <div class="market-card">
+            <div class="market-flag">&#127467;&#127479;</div>
+            <div class="market-info">
+              <h4>Frankrike</h4>
+              <span>18 ordrar</span>
+            </div>
+            <span class="status-badge active">Aktiv</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- View: Label Engine -->
+    <div class="view" id="view-labels">
+      <div class="view-header">
+        <div>
+          <h2 data-i18n="labels.title">Label Engine</h2>
+          <p class="view-desc" data-i18n="labels.desc">Skapa fraktetiketter snabbt. Automatisk prisber&auml;kning med +20% marginal.</p>
+        </div>
+      </div>
+
+      <!-- Label Creator -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <h3>Skapa etikett</h3>
+          </div>
+          <div class="label-form">
+            <div class="form-section">
+              <h4><i class="fas fa-map-marker-alt"></i> Fr&aring;n</h4>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>F&ouml;retag</label>
+                  <input type="text" value="MinButik AB" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label>Postnr &amp; Ort</label>
+                  <input type="text" value="111 22 Stockholm" class="form-input">
+                </div>
+              </div>
+            </div>
+            <div class="form-section">
+              <h4><i class="fas fa-map-pin"></i> Till</h4>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Mottagare</label>
+                  <input type="text" placeholder="Namn" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label>Postnr &amp; Ort</label>
+                  <input type="text" placeholder="123 45 Stad" class="form-input">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Land</label>
+                  <select class="form-input">
+                    <option>Sverige</option>
+                    <option>Danmark</option>
+                    <option>Norge</option>
+                    <option>Finland</option>
+                    <option>Tyskland</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Vikt (kg)</label>
+                  <input type="number" value="1.5" class="form-input">
+                </div>
+              </div>
+            </div>
+            <div class="form-section">
+              <h4><i class="fas fa-truck"></i> Transport&ouml;r</h4>
+              <div class="carrier-options">
+                <label class="carrier-option selected">
+                  <input type="radio" name="carrier" checked>
+                  <div class="carrier-card">
+                    <strong>PostNord</strong>
+                    <span class="carrier-price">49 kr</span>
+                    <span class="carrier-time">1-2 dagar</span>
+                  </div>
+                </label>
+                <label class="carrier-option">
+                  <input type="radio" name="carrier">
+                  <div class="carrier-card">
+                    <strong>DHL</strong>
+                    <span class="carrier-price">69 kr</span>
+                    <span class="carrier-time">1 dag</span>
+                  </div>
+                </label>
+                <label class="carrier-option">
+                  <input type="radio" name="carrier">
+                  <div class="carrier-card">
+                    <strong>Budbee</strong>
+                    <span class="carrier-price">59 kr</span>
+                    <span class="carrier-time">Samma dag</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-full"><i class="fas fa-print"></i> Skapa etikett &mdash; 49 kr</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>Senaste etiketter</h3>
+          </div>
+          <div class="label-list">
+            <div class="label-item">
+              <div class="label-icon"><i class="fas fa-barcode"></i></div>
+              <div class="label-info">
+                <strong>PostNord &mdash; #PN-89234</strong>
+                <span>Stockholm &rarr; G&ouml;teborg &bull; 1.2 kg</span>
+                <span class="label-time">Idag 14:32</span>
+              </div>
+              <div class="label-actions">
+                <button class="btn btn-sm btn-outline"><i class="fas fa-download"></i></button>
+                <button class="btn btn-sm btn-outline"><i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+            <div class="label-item">
+              <div class="label-icon"><i class="fas fa-barcode"></i></div>
+              <div class="label-info">
+                <strong>DHL &mdash; #DHL-44210</strong>
+                <span>Stockholm &rarr; Malm&ouml; &bull; 3.4 kg</span>
+                <span class="label-time">Idag 11:07</span>
+              </div>
+              <div class="label-actions">
+                <button class="btn btn-sm btn-outline"><i class="fas fa-download"></i></button>
+                <button class="btn btn-sm btn-outline"><i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+            <div class="label-item">
+              <div class="label-icon"><i class="fas fa-barcode"></i></div>
+              <div class="label-info">
+                <strong>Budbee &mdash; #BB-11022</strong>
+                <span>Stockholm &rarr; Solna &bull; 0.8 kg</span>
+                <span class="label-time">Ig&aring;r 16:45</span>
+              </div>
+              <div class="label-actions">
+                <button class="btn btn-sm btn-outline"><i class="fas fa-download"></i></button>
+                <button class="btn btn-sm btn-outline"><i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+            <div class="label-item">
+              <div class="label-icon"><i class="fas fa-barcode"></i></div>
+              <div class="label-info">
+                <strong>PostNord Batch &mdash; 43 etiketter</strong>
+                <span>Batchjobb &bull; Blandade destinationer</span>
+                <span class="label-time">Ig&aring;r 09:00</span>
+              </div>
+              <div class="label-actions">
+                <button class="btn btn-sm btn-outline"><i class="fas fa-download"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="label-stats">
+            <div class="label-stat">
+              <span class="label-stat-value">1 247</span>
+              <span class="label-stat-label">Etiketter denna m&aring;nad</span>
+            </div>
+            <div class="label-stat">
+              <span class="label-stat-value">52.40 kr</span>
+              <span class="label-stat-label">Snittpris</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- View: Analytics -->
+    <div class="view" id="view-analytics">
+      <div class="view-header">
+        <div>
+          <h2 data-i18n="analytics.title">Analytics</h2>
+          <p class="view-desc" data-i18n="analytics.desc">&Aring;tg&aring;ng, lager, stock management &amp; proaktiva ink&ouml;psf&ouml;rslag.</p>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-outline"><i class="fas fa-download"></i> Exportera</button>
+          <button class="btn btn-primary"><i class="fas fa-magic"></i> Ink&ouml;psf&ouml;rslag</button>
+        </div>
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-icon blue"><i class="fas fa-warehouse"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">4 821</span>
+            <span class="kpi-label">SKU:er i lager</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon burgundy"><i class="fas fa-cubes"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">84 200</span>
+            <span class="kpi-label">Enheter totalt</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon orange"><i class="fas fa-exclamation"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">23</span>
+            <span class="kpi-label">Under min-niv&aring;</span>
+            <span class="kpi-change down">Beh&ouml;ver ink&ouml;p</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon green"><i class="fas fa-chart-line"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">32 dagar</span>
+            <span class="kpi-label">Snitt lagerdagar</span>
+            <span class="kpi-change up">Optimalt: 25-35</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Purchase Suggestions -->
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-magic" style="color: var(--burgundy); margin-right: 8px;"></i>Proaktiva ink&ouml;psf&ouml;rslag</h3>
+          <span class="badge-pill">AI-genererat</span>
+        </div>
+        <div class="suggestion-list">
+          <div class="suggestion-item urgent">
+            <div class="suggestion-priority"><i class="fas fa-arrow-up"></i> Br&aring;dskande</div>
+            <div class="suggestion-content">
+              <h4>Premium T-shirt Svart (SKU-1084)</h4>
+              <p>38 st kvar. Baserat p&aring; 14-dagars &aring;tg&aring;ng (420 st/m&aring;n) &mdash; slut om <strong>2.7 dagar</strong>.</p>
+            </div>
+            <div class="suggestion-action">
+              <span class="suggestion-qty">Best&auml;ll: <strong>500 st</strong></span>
+              <button class="btn btn-sm btn-primary">Skapa ink&ouml;psorder</button>
+            </div>
+          </div>
+          <div class="suggestion-item warning">
+            <div class="suggestion-priority"><i class="fas fa-exclamation"></i> Snart</div>
+            <div class="suggestion-content">
+              <h4>Hoodie Gr&aring; Unisex (SKU-2091)</h4>
+              <p>124 st kvar. &Aring;tg&aring;ng 180 st/m&aring;n &mdash; slut om <strong>20 dagar</strong>. Lead time: 14 dagar.</p>
+            </div>
+            <div class="suggestion-action">
+              <span class="suggestion-qty">Best&auml;ll: <strong>300 st</strong></span>
+              <button class="btn btn-sm btn-outline">Skapa ink&ouml;psorder</button>
+            </div>
+          </div>
+          <div class="suggestion-item info">
+            <div class="suggestion-priority"><i class="fas fa-info-circle"></i> Planera</div>
+            <div class="suggestion-content">
+              <h4>Sneakers Runner X (SKU-3344)</h4>
+              <p>412 st kvar. &Aring;tg&aring;ng 95 st/m&aring;n &mdash; slut om <strong>4.3 m&aring;nader</strong>. Men sommar-s&auml;song +40%.</p>
+            </div>
+            <div class="suggestion-action">
+              <span class="suggestion-qty">Best&auml;ll: <strong>200 st</strong></span>
+              <button class="btn btn-sm btn-outline">Planera</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 24px;">
+        <div class="card-header">
+          <h3>&Aring;tg&aring;ng &mdash; Top produkter</h3>
+          <select class="card-select">
+            <option>Senaste 30 dagarna</option>
+            <option>Senaste 90 dagarna</option>
+          </select>
+        </div>
+        <div class="chart-container">
+          <canvas id="consumptionChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
