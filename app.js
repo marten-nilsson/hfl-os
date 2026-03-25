@@ -72,7 +72,7 @@ function initNavigation() {
 
       if (viewId === 'analytics') setTimeout(initConsumptionChart, 100);
       if (viewId === 'dashboard') setTimeout(initCharts, 100);
-      if (viewId === 'costs') setTimeout(initCostDashboardCharts, 100);
+      if (viewId === 'costs') setTimeout(initCostCustomerChart, 100);
     });
   });
 }
@@ -81,8 +81,10 @@ function getTitle(viewId) {
   const titles = {
     sv: {
       dashboard: 'Dashboard',
-      automat: 'Automat — Track & Trace',
+      automat: 'Track & Trace',
       'automat-shipments': 'Försändelser',
+      slr: 'SLR Dashboard',
+      notifications: 'Notifieringsmotor',
       invoice: 'Invoice Audit',
       costs: 'Cost Dashboard',
       reklamation: 'Reklamation',
@@ -95,6 +97,8 @@ function getTitle(viewId) {
       automat: 'Automat — Track & Trace',
       'automat-shipments': 'Shipments',
       invoice: 'Invoice Audit',
+      slr: 'SLR Dashboard',
+      notifications: 'Notification Engine',
       costs: 'Cost Dashboard',
       reklamation: 'Claims',
       crossborder: 'Crossborder',
@@ -103,8 +107,10 @@ function getTitle(viewId) {
     },
     no: {
       dashboard: 'Dashboard',
-      automat: 'Automat — Sporing',
+      automat: 'Sporing',
       'automat-shipments': 'Forsendelser',
+      slr: 'SLR Dashboard',
+      notifications: 'Varslingsmotor',
       invoice: 'Fakturakontroll',
       costs: 'Kostnads-dashboard',
       reklamation: 'Reklamasjon',
@@ -811,6 +817,37 @@ let costByCarrierChartInstance = null;
 function initCostDashboardCharts() {
   initCostTrendChart();
   initCostByCarrierChart();
+}
+
+function initCostCustomerChart() {
+  const ctx = document.getElementById('costChartCustomer');
+  if (!ctx) return;
+  if (ctx._chartInstance) ctx._chartInstance.destroy();
+  ctx._chartInstance = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['v.5', 'v.6', 'v.7', 'v.8', 'v.9', 'v.10', 'v.11', 'v.12'],
+      datasets: [
+        { label: 'PostNord', data: [7200, 8100, 7900, 8400, 8100, 8800, 9200, 8900], backgroundColor: '#800020', borderRadius: 4 },
+        { label: 'DHL', data: [3100, 3400, 3200, 3600, 3800, 4100, 3900, 4200], backgroundColor: '#6F8FAF', borderRadius: 4 },
+        { label: 'Bring/Övrigt', data: [900, 1100, 800, 1000, 1200, 1300, 1100, 1100], backgroundColor: '#12B76A', borderRadius: 4 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { usePointStyle: true, pointStyle: 'circle', padding: 20, font: { family: 'Open Sans', size: 12 } } },
+        tooltip: {
+          backgroundColor: '#1D2939', padding: 12, cornerRadius: 8,
+          callbacks: { label: (c) => `${c.dataset.label}: ${c.raw.toLocaleString('sv-SE')} kr` }
+        }
+      },
+      scales: {
+        x: { stacked: true, grid: { display: false }, ticks: { font: { family: 'Open Sans', size: 12 }, color: '#667085' } },
+        y: { stacked: true, grid: { color: '#F0F2F5' }, ticks: { font: { family: 'Open Sans', size: 11 }, color: '#98A2B3', callback: (v) => (v / 1000) + 'k' } }
+      }
+    }
+  });
 }
 
 function initCostTrendChart() {

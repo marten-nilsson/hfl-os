@@ -51,36 +51,53 @@
         <i class="fas fa-th-large"></i>
         <span data-i18n="nav.dashboard">Dashboard</span>
       </a>
+
+      <div class="nav-section-label">Operativt</div>
       <a href="#" class="nav-item" data-view="automat">
         <i class="fas fa-robot"></i>
-        <span data-i18n="nav.automat">Automat</span>
+        <span data-i18n="nav.automat">Track &amp; Trace</span>
         <span class="nav-badge">3</span>
       </a>
+      <a href="#" class="nav-item" data-view="slr">
+        <i class="fas fa-tachometer-alt"></i>
+        <span data-i18n="nav.slr">SLR Dashboard</span>
+      </a>
+      <a href="#" class="nav-item" data-view="notifications">
+        <i class="fas fa-bell"></i>
+        <span data-i18n="nav.notifications">Notifieringar</span>
+        <span class="nav-badge">5</span>
+      </a>
+
+      <div class="nav-section-label">Ekonomi</div>
       <a href="#" class="nav-item" data-view="invoice">
         <i class="fas fa-file-invoice-dollar"></i>
         <span data-i18n="nav.invoice">Invoice Audit</span>
+        <span class="nav-tag-intern">Internt</span>
       </a>
       <a href="#" class="nav-item" data-view="costs">
         <i class="fas fa-chart-pie"></i>
         <span data-i18n="nav.costs">Cost Dashboard</span>
       </a>
+
+      <div class="nav-section-label">Verktyg</div>
       <a href="#" class="nav-item" data-view="reklamation">
         <i class="fas fa-undo-alt"></i>
         <span data-i18n="nav.reklamation">Reklamation</span>
         <span class="nav-badge green">+4 200 kr</span>
       </a>
-      <a href="#" class="nav-item" data-view="crossborder">
-        <i class="fas fa-globe-europe"></i>
-        <span data-i18n="nav.crossborder">Crossborder</span>
-      </a>
       <a href="#" class="nav-item" data-view="labels">
         <i class="fas fa-tag"></i>
         <span data-i18n="nav.labels">Label Engine</span>
+      </a>
+      <a href="#" class="nav-item" data-view="crossborder">
+        <i class="fas fa-globe-europe"></i>
+        <span data-i18n="nav.crossborder">Crossborder</span>
       </a>
       <a href="#" class="nav-item" data-view="analytics">
         <i class="fas fa-chart-line"></i>
         <span data-i18n="nav.analytics">Analytics</span>
       </a>
+
       <div class="nav-divider"></div>
       <a href="#" class="nav-item">
         <i class="fas fa-cog"></i>
@@ -2165,6 +2182,411 @@
         </div>
       </div>
     </div>
+
+    <!-- View: SLR Dashboard -->
+    <div class="view" id="view-slr">
+      <div class="view-header">
+        <div>
+          <h2>SLR Dashboard</h2>
+          <p class="view-desc">Realtidsöversikt av orderflöden och leveranskapacitet. Uppdateras var 10 min.</p>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-outline"><i class="fas fa-sync-alt"></i> Uppdatera</button>
+          <button class="btn btn-primary"><i class="fas fa-bullhorn"></i> Skriv meddelande</button>
+        </div>
+      </div>
+
+      <!-- KPIs -->
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-icon blue"><i class="fas fa-inbox"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">284</span>
+            <span class="kpi-label">Aktiva ordrar idag</span>
+            <span class="kpi-change up">+18% vs igår</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon orange"><i class="fas fa-exclamation-triangle"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">12</span>
+            <span class="kpi-label">I SLR-risk</span>
+            <span class="kpi-change down">Ej klara i tid</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon green"><i class="fas fa-shipping-fast"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">147</span>
+            <span class="kpi-label">Dispatchade idag</span>
+            <span class="kpi-change up">Mål: 180</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon burgundy"><i class="fas fa-clock"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-value">2.4h</span>
+            <span class="kpi-label">Snitt handl.tid</span>
+            <span class="kpi-change up">-0.3h vs igår</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pipeline + Notice board -->
+      <div class="grid-2" style="margin-bottom:24px">
+        <!-- Order pipeline -->
+        <div class="card">
+          <div class="card-header">
+            <h3><i class="fas fa-stream" style="color:var(--burgundy);margin-right:8px"></i>Orderpipeline just nu</h3>
+            <span style="font-size:12px;color:var(--gray-400)">Uppdaterad 14:32</span>
+          </div>
+          <div class="pipeline-wrap">
+            <div class="pipeline-stage">
+              <div class="pipeline-count blue">48</div>
+              <div class="pipeline-label">Inkomna</div>
+              <div class="pipeline-sub">Ej påbörjat</div>
+            </div>
+            <div class="pipeline-arrow"><i class="fas fa-chevron-right"></i></div>
+            <div class="pipeline-stage">
+              <div class="pipeline-count burgundy">61</div>
+              <div class="pipeline-label">Plockas</div>
+              <div class="pipeline-sub">I lager</div>
+            </div>
+            <div class="pipeline-arrow"><i class="fas fa-chevron-right"></i></div>
+            <div class="pipeline-stage">
+              <div class="pipeline-count orange">28</div>
+              <div class="pipeline-label">Packas</div>
+              <div class="pipeline-sub">Packbord</div>
+            </div>
+            <div class="pipeline-arrow"><i class="fas fa-chevron-right"></i></div>
+            <div class="pipeline-stage">
+              <div class="pipeline-count green">147</div>
+              <div class="pipeline-label">Dispatched</div>
+              <div class="pipeline-sub">Hos transportör</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notice board -->
+        <div class="card">
+          <div class="card-header">
+            <h3><i class="fas fa-thumbtack" style="color:var(--orange);margin-right:8px"></i>Anslagstavla</h3>
+            <button class="btn btn-sm btn-outline"><i class="fas fa-plus"></i> Nytt</button>
+          </div>
+          <div class="notice-board">
+            <div class="notice-item warning">
+              <div class="notice-meta">
+                <span class="notice-author">Lars P.</span>
+                <span class="notice-time">Idag 08:15</span>
+              </div>
+              <p>2 sjukskrivningar idag — SLR kan påverkas för eftermiddagspasset. Målet sänks till 160 dispatchar.</p>
+            </div>
+            <div class="notice-item info">
+              <div class="notice-meta">
+                <span class="notice-author">Anna K.</span>
+                <span class="notice-time">Igår 16:45</span>
+              </div>
+              <p>PostNord hämtar kl 15:30 imorgon (ej 14:00 som vanligt). Prioritera PN-ordrar till lunch.</p>
+            </div>
+            <div class="notice-item">
+              <div class="notice-meta">
+                <span class="notice-author">System</span>
+                <span class="notice-time">25 mar</span>
+              </div>
+              <p>Lager stängt fredag 28 mars (röd dag). Ordrar inkomna tors. 27/3 efter kl 12 dispatcharas måndag 31/3.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLR Risk table -->
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-exclamation-circle" style="color:var(--orange);margin-right:8px"></i>Ordrar i SLR-risk</h3>
+          <div class="filter-group">
+            <button class="filter-btn active">Alla risker</button>
+            <button class="filter-btn">Ej dispatchad</button>
+            <button class="filter-btn">Sen plockning</button>
+          </div>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Order</th>
+              <th>Kund</th>
+              <th>Status</th>
+              <th>Inkommit</th>
+              <th>SLR-deadline</th>
+              <th>Risk</th>
+              <th>Åtgärd</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-company="minbutik">
+              <td><strong>#5102</strong></td>
+              <td>MinButik.se <span class="company-badge minbutik sm">MinButik.se</span></td>
+              <td><span class="status-badge warning">Plockas</span></td>
+              <td>Igår 22:14</td>
+              <td>Idag 14:00</td>
+              <td><span class="slr-risk critical">Kritisk</span></td>
+              <td><button class="btn btn-sm btn-primary">Eskalera</button></td>
+            </tr>
+            <tr data-company="sportshop">
+              <td><strong>#5098</strong></td>
+              <td>SportShop.se <span class="company-badge sportshop sm">SportShop.se</span></td>
+              <td><span class="status-badge warning">Packas</span></td>
+              <td>Idag 06:30</td>
+              <td>Idag 15:30</td>
+              <td><span class="slr-risk warning">Varning</span></td>
+              <td><button class="btn btn-sm btn-outline">Visa</button></td>
+            </tr>
+            <tr data-company="nordicwear">
+              <td><strong>#5091</strong></td>
+              <td>NordicWear.no <span class="company-badge nordicwear sm">NordicWear.no</span></td>
+              <td><span class="status-badge warning">Plockas</span></td>
+              <td>Idag 08:05</td>
+              <td>Idag 16:00</td>
+              <td><span class="slr-risk warning">Varning</span></td>
+              <td><button class="btn btn-sm btn-outline">Visa</button></td>
+            </tr>
+            <tr data-company="minbutik">
+              <td><strong>#5087</strong></td>
+              <td>MinButik.se <span class="company-badge minbutik sm">MinButik.se</span></td>
+              <td><span class="status-badge danger">Inkommit</span></td>
+              <td>Igår 23:58</td>
+              <td>Idag 13:00</td>
+              <td><span class="slr-risk critical">Kritisk</span></td>
+              <td><button class="btn btn-sm btn-primary">Eskalera</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- View: Notifieringar -->
+    <div class="view" id="view-notifications">
+      <div class="view-header">
+        <div>
+          <h2>Notifieringsmotor</h2>
+          <p class="view-desc">Proaktiva notifieringar baserade på tracking-events och regler. Skickar automatiskt vid avvikelser.</p>
+        </div>
+        <button class="btn btn-primary"><i class="fas fa-plus"></i> Ny notifieringsregel</button>
+      </div>
+
+      <!-- Addon status -->
+      <div class="addon-status-bar">
+        <div class="addon-status-item active">
+          <i class="fas fa-check-circle"></i>
+          <span><strong>MinButik.se</strong> — Notis-addon aktiverat</span>
+        </div>
+        <div class="addon-status-item active">
+          <i class="fas fa-check-circle"></i>
+          <span><strong>SportShop.se</strong> — Notis-addon aktiverat</span>
+        </div>
+        <div class="addon-status-item inactive">
+          <i class="fas fa-times-circle"></i>
+          <span><strong>NordicWear.no</strong> — Notis-addon ej aktiverat</span>
+          <button class="btn btn-sm btn-outline" style="margin-left:auto">Aktivera</button>
+        </div>
+      </div>
+
+      <!-- Notification rules -->
+      <div class="grid-2" style="margin-bottom:24px">
+        <div class="card">
+          <div class="card-header">
+            <h3>Automatiska regler</h3>
+            <span class="rule-count">6 aktiva regler</span>
+          </div>
+          <div class="notif-rules">
+            <div class="notif-rule">
+              <div class="notif-rule-info">
+                <strong>Ingen skanning — 24h</strong>
+                <span>Dispatch men aldrig mottaget av transportör</span>
+              </div>
+              <div class="notif-rule-meta">
+                <span class="notif-severity critical">Kritisk</span>
+                <span class="notif-target">Intern</span>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+            <div class="notif-rule">
+              <div class="notif-rule-info">
+                <strong>Paket stå still — 5 arbetsdagar</strong>
+                <span>Ingen ny skanning efter första mottagning</span>
+              </div>
+              <div class="notif-rule-meta">
+                <span class="notif-severity critical">Kritisk</span>
+                <span class="notif-target">Intern + Kund</span>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+            <div class="notif-rule">
+              <div class="notif-rule-info">
+                <strong>Leveransförsök misslyckat</strong>
+                <span>Transportören flaggar "stängt/obemannat"</span>
+              </div>
+              <div class="notif-rule-meta">
+                <span class="notif-severity warning">Varning</span>
+                <span class="notif-target">Kund</span>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+            <div class="notif-rule">
+              <div class="notif-rule-info">
+                <strong>Retur initierad</strong>
+                <span>Transportören har flaggat för retur</span>
+              </div>
+              <div class="notif-rule-meta">
+                <span class="notif-severity critical">Kritisk</span>
+                <span class="notif-target">Intern + Kund</span>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+            <div class="notif-rule">
+              <div class="notif-rule-info">
+                <strong>Ej uthämtat — fristdatum</strong>
+                <span>Paket riskerar retur från utlämningsställe</span>
+              </div>
+              <div class="notif-rule-meta">
+                <span class="notif-severity warning">Varning</span>
+                <span class="notif-target">Kund</span>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+            <div class="notif-rule">
+              <div class="notif-rule-info">
+                <strong>Tullstopp &gt; 48h</strong>
+                <span>Paket fastnat i tull längre än normalt</span>
+              </div>
+              <div class="notif-rule-meta">
+                <span class="notif-severity warning">Varning</span>
+                <span class="notif-target">Intern</span>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox">
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent notifications -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Senaste notifieringar</h3>
+            <div class="filter-group">
+              <button class="filter-btn active">Alla</button>
+              <button class="filter-btn">Auto</button>
+              <button class="filter-btn">Manuell</button>
+            </div>
+          </div>
+          <div class="activity-list">
+            <div class="activity-item" data-company="minbutik">
+              <div class="activity-icon red"><i class="fas fa-robot"></i></div>
+              <div class="activity-content">
+                <span class="activity-text"><strong>Ingen skanning 48h</strong> — #PN-89401</span>
+                <span class="activity-time">Auto · 12 min sedan · MinButik.se</span>
+              </div>
+              <span class="activity-badge danger">Auto</span>
+            </div>
+            <div class="activity-item" data-company="sportshop">
+              <div class="activity-icon orange"><i class="fas fa-robot"></i></div>
+              <div class="activity-content">
+                <span class="activity-text"><strong>Tullstopp &gt; 72h</strong> — #DHL-44298</span>
+                <span class="activity-time">Auto · 2h sedan · SportShop.se</span>
+              </div>
+              <span class="activity-badge warning">Auto</span>
+            </div>
+            <div class="activity-item" data-company="minbutik">
+              <div class="activity-icon blue"><i class="fas fa-user"></i></div>
+              <div class="activity-content">
+                <span class="activity-text"><strong>Manuell notis till kund</strong> — Order #4821</span>
+                <span class="activity-time">Manuell · Lars P. · 3h sedan</span>
+              </div>
+              <span class="activity-badge info">Manuell</span>
+            </div>
+            <div class="activity-item" data-company="nordicwear">
+              <div class="activity-icon orange"><i class="fas fa-robot"></i></div>
+              <div class="activity-content">
+                <span class="activity-text"><strong>Ej uthämtat — 5 dagar kvar</strong> — #PN-89412</span>
+                <span class="activity-time">Auto · Igår 14:22 · NordicWear.no</span>
+              </div>
+              <span class="activity-badge warning">Auto</span>
+            </div>
+            <div class="activity-item" data-company="sportshop">
+              <div class="activity-icon green"><i class="fas fa-robot"></i></div>
+              <div class="activity-content">
+                <span class="activity-text"><strong>Leveransförsök misslyckat</strong> — #DHL-44310</span>
+                <span class="activity-time">Auto · Igår 09:10 · SportShop.se</span>
+              </div>
+              <span class="activity-badge warning">Auto</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notification channels -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Kanaler &amp; mottagare</h3>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Kund</th>
+              <th>E-post (internt)</th>
+              <th>E-post (slutkund)</th>
+              <th>Addon aktiverat</th>
+              <th>Anpassade regler</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-company="minbutik">
+              <td><strong>MinButik.se</strong></td>
+              <td><span class="status-badge active">Aktiv</span></td>
+              <td><span class="status-badge active">Aktiv</span></td>
+              <td><span class="status-badge active">Ja</span></td>
+              <td>3 egna regler</td>
+              <td><button class="btn btn-sm btn-outline">Konfigurera</button></td>
+            </tr>
+            <tr data-company="sportshop">
+              <td><strong>SportShop.se</strong></td>
+              <td><span class="status-badge active">Aktiv</span></td>
+              <td><span class="status-badge warning">Ej konfigurerat</span></td>
+              <td><span class="status-badge active">Ja</span></td>
+              <td>Standard</td>
+              <td><button class="btn btn-sm btn-outline">Konfigurera</button></td>
+            </tr>
+            <tr data-company="nordicwear">
+              <td><strong>NordicWear.no</strong></td>
+              <td><span class="status-badge active">Aktiv</span></td>
+              <td><span class="status-badge danger">Ej aktiverat</span></td>
+              <td><span class="status-badge danger">Nej</span></td>
+              <td>—</td>
+              <td><button class="btn btn-sm btn-primary">Aktivera addon</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
